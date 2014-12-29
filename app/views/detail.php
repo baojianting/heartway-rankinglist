@@ -8,7 +8,7 @@
     <title>官方排行榜</title>
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/rankinglist/app/views/css/index.css">
+    <link rel="stylesheet" href="../../../app/views/css/index.css">
     <style>
     #iCenter{
         

@@ -8,7 +8,7 @@
     <title>官方排行榜</title>
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/rankinglist/app/views/css/index.css">
+    <link rel="stylesheet" href="../../../app/views/css/index.css">
 
 </head>
 
@@ -48,7 +48,7 @@
                     foreach($dataArr as $key=>$value) {
                     ?>
                         <div class="col-xs-6 col-sm-3 placeholder">
-                            <img src="/rankinglist/app/views/asset/beijing.png" class="img-responsive" alt="Generic placeholder thumbnail">
+                            <img src="../../../app/views/asset/beijing.png" class="img-responsive" alt="Generic placeholder thumbnail">
                             <h4><?php echo $key;?></h4>
                             <?php
                                 if($value == 0) {
