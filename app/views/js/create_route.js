@@ -34,18 +34,21 @@ $(document).ready(function () {
         var centerLocation = trim($("#centerLocation").val());
         var points = $("#points").val();
         var areaId = $("#hidden-route-area-id").val();
+        var routeType = $("#routeType").val();
+        // console.log(routeType);
         // console.log(routeId);
         // console.log(routeTitle + " " + routeClass + " " + routeDetail + " " + centerLocation + " " + points);
         // post("add_route", {"areaId": areaId, "routeId": routeId, "routeTitle": routeTitle, "routeClass": routeClass, "routeDetail": routeDetail,
         //    "centerLocation": centerLocation, "points": points});
 
         $.post("add_route", {"areaId": areaId, "routeId": routeId, "routeTitle": routeTitle, "routeClass": routeClass, "routeDetail": routeDetail,
-            "centerLocation": centerLocation, "points": points}, function (data) {
+            "centerLocation": centerLocation, "points": points, "routeType": routeType}, function (data) {
             // console.log(data);
             if(data == "success") {
                 alert("操作成功");
                 window.location.href="new_route";
             } else {
+                console.log(data);
                 alert("操作失败");
             }
         });

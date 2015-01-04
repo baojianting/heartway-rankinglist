@@ -65,7 +65,7 @@ class InterstListController extends BaseController {
                 $route->save();
                 return Constant::$RETURN_SUCCESS;
             } else if($actionType == self::$ACTION_EDIT) {
-                $route = DB::select("select r.id, r.route_description, route_location, route_points, is_lock, participate_number,
+                $route = DB::select("select r.route_type, r.id, r.route_description, route_location, route_points, is_lock, participate_number,
                             route_area_id, route_title, name from hw_route r, hw_route_area a where r.id = ? and r.route_area_id = a.id"
                             , array($routeId));
                 $areas = HwRouteArea::all();

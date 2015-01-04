@@ -116,11 +116,39 @@
                                     } else {
                                         echo "";
                                     }
-                                ?>
-
-                            </textarea>
+                                ?></textarea>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label for="routeType" class="col-sm-2 control-label">线路类型</label>
+                        <div class="col-sm-10">
+                            <select id="routeType" class="form-control">
+                                <?php
+                                if(!isset($editArr)) {
+                                    ?>
+                                        <option value="0" selected>步行</option>
+                                        <option value="1">骑行</option>
+                                    <?php
+
+                                } else {
+
+                                        if($editArr["route"][0]->route_type == "0") {
+                                            ?>
+                                            <option value="0" selected>步行</option>
+                                            <option value="1">骑行</option>
+                                        <?php
+                                        } else {
+                                            ?>
+                                            <option value="0">步行</option>
+                                            <option value="1" selected>骑行</option><?php
+                                        }
+
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
                             <div class="input-group">

@@ -7,6 +7,7 @@
  */
 
 require_once __DIR__."/../util/Constant.php";
+require_once __DIR__."/../util/Util.php";
 
 class NewRouteController extends BaseController {
 
@@ -44,7 +45,7 @@ class NewRouteController extends BaseController {
         else {
 
             if(!isset($_POST['routeTitle']) || !isset($_POST['routeClass']) || !isset($_POST['routeDetail'])
-                || !isset($_POST['centerLocation']) || !isset($_POST['points'])) {
+                || !isset($_POST['centerLocation']) || !isset($_POST['points']) || !isset($_POST["routeType"])) {
                 return Constant::$RETURN_FAIL;
             }
 
@@ -55,6 +56,7 @@ class NewRouteController extends BaseController {
             $points = $_POST['points'];
             $routeId = $_POST['routeId'];
             $formerAreaId = $_POST['areaId'];
+            $routeType = $_POST["routeType"];
             // echo $formerAreaId." ".$routeClass;
             if($routeId != "") {
                 try {
@@ -65,6 +67,8 @@ class NewRouteController extends BaseController {
                     $route->route_area_id = $routeClass;
                     $route->route_points = $points;
                     $route->route_location = $centerLocation;
+                    $route->route_length = Util::getTotalDistance($points);
+                    $route->route_type = $routeType;
                     $route->save();
 
                     $formerArea = HwRouteArea::whereRaw('id = ?', array($formerAreaId))->get();
@@ -76,8 +80,8 @@ class NewRouteController extends BaseController {
                     $nowArea[0]->save();
                     DB::commit();
                 } catch(Exception $e) {
-                    // echo $e->getMessage();
-                    return Constant::$RETURN_FAIL;
+                    return $e->getTraceAsString();
+                    // return Constant::$RETURN_FAIL;
                 }
 
                 return Constant::$RETURN_SUCCESS;
@@ -102,6 +106,8 @@ class NewRouteController extends BaseController {
                 $hwRoute->participate_number = 0;
                 $hwRoute->route_area_id = $routeClass;
                 $hwRoute->route_title = $routeTitle;
+                $hwRoute->route_type = $routeType;
+                $hwRoute->route_length = Util::getTotalDistance($points);
 
                 $hwRoute->save();
                 $id = $hwRoute->id;
