@@ -24,6 +24,11 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="#">官方线路</a>
+		<form action="<?php echo 'http://'.$_SERVER['HTTP_HOST'].'/forum/public/index.php/login'?>" method="post" style="float: right;">
+                    <input type="hidden" name="username" value="<?php echo $username?>">
+                    <input type="hidden" name="password" value="<?php echo $password?>">
+                    <input type="submit" value="Êҳ" class="btn btn-primary">
+                </form>
             </div>
         </div>
     </nav>

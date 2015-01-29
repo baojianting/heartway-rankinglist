@@ -9,7 +9,10 @@
 class IndexController extends BaseController {
 
     public function getIndex() {
-
+	$username = Input::get('username');
+	$password = Input::get('password');
+	Session::put('username', $username);
+	Session::put('password', $password);
         $allAreas = HwRouteArea::all();
 
         if(!isset($allAreas)) {
@@ -21,6 +24,6 @@ class IndexController extends BaseController {
             $dataArr[$area->name] = $area->route_num;
         }
 
-        return View::make("index")->with('dataArr', $dataArr);
+        return View::make("index")->with(['dataArr'=>$dataArr, 'username'=>Session::get('username'),'password'=>Session::get('password')]);
     }
 } 
