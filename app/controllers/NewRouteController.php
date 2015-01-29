@@ -29,8 +29,9 @@ class NewRouteController extends BaseController {
             $dataArr[$area->id] = $area->name;
             // array_push($dataArr, $area->name);
         }
-
-        return View::make("create_route")->with('dataArr', $dataArr);
+        $username = Session::get("username");
+        $password = Session::get("password");
+        return View::make("create_route")->with(['dataArr'=> $dataArr, 'username'=>$username, 'password'=>$password]);
     }
 
     /*

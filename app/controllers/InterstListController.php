@@ -29,13 +29,17 @@ class InterstListController extends BaseController {
                 if(!isset($results)) {
                     return View::make("error");
                 }
-                return View::make("interst_list")->with("datas", $results);
+                $username = Session::get('username');
+                $password = Session::get('password');
+                return View::make("interst_list")->with(["datas"=>$results,"username"=>$username,'password'=>$password]);
             }
         }
     }
 
 
     public function InterstListAction() {
+        $username = Session::get('username');
+        $password = Session::get('password');
         if($_SERVER['REQUEST_METHOD'] != "POST") {
             return Constant::$RETURN_FAIL;
         }
@@ -80,9 +84,9 @@ class InterstListController extends BaseController {
                 $returnArr["areas"] = $areas;
                 $returnArr["route"] = $route;
 
-                return View::make("create_route")->with("editArr", $returnArr);
+                return View::make("create_route")->with(["editArr"=>$returnArr, "username"=>$username, "password"=>$password]);
             } else if($actionType == self::$ACTION_VIEW) {
-                return View::make("detail")->with("route", $route);
+                return View::make("detail")->with(["route"=>$route,"username"=>$username, "password"=>$password]);
             }
 
         }
