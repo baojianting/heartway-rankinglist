@@ -52,6 +52,7 @@
    strokeDasharray:[10,5] //补充线样式 
    }); 
    polyline.setMap(mapObj);
+	mapObj.setFitView(); 
     }
     </script>
 </head>
